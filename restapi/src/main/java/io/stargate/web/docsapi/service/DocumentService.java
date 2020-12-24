@@ -61,6 +61,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DocumentService {
+  public static final int LEFT_PAD_SIZE = 6;
   private static final Logger logger = LoggerFactory.getLogger(DocumentService.class);
   private static final ObjectMapper mapper = new ObjectMapper();
   private static final Pattern PERIOD_PATTERN = Pattern.compile("\\.");
@@ -95,11 +96,7 @@ public class DocumentService {
   }
 
   private String leftPadTo6(String value) {
-    String padded = "";
-    for (int pad = 0; pad < 6 - value.length(); pad++) {
-      padded += "0";
-    }
-    return padded + value;
+    return StringUtils.leftPad(value, LEFT_PAD_SIZE, '0');
   }
 
   private String convertArrayPath(String path) {
